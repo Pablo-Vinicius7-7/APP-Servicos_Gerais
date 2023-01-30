@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#87CEEB"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/etSenha"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/etEmail"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="59dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Senha"    />
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="169dp"
+        android:layout_height="151dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="93dp"
+        android:layout_marginEnd="120dp"
+        app:srcCompat="@drawable/logoicone" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        android:layout_below="@+id/imageLogo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="124dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Login"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="48sp" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/tvLogin"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="60dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="E-mail" />
+
+    <Button
+        android:id="@+id/btnEntrar"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_below="@+id/etSenha"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="121dp"
+        android:text="Entrar" />
+
+    <TextView
+        android:id="@+id/tvCadastro"
+        android:layout_width="293dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/btnEntrar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="45dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Não é usuário? Cadastre-se"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+</RelativeLayout>
