@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c0d0fe"
+    tools:context=".CadastroActivity">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="84dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Cadastro"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="48sp" />
+
+    <EditText
+        android:id="@+id/etNome"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/tvTitulo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="61dp"
+        android:ems="10"
+        android:hint="Nome completo"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/etNome"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="61dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/etSenha"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/etEmail"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="61dp"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_below="@+id/etSenha"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="121dp"
+        android:text="Continuar" />
+
+</RelativeLayout>

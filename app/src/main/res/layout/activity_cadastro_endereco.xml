@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c0d0fe"
+    tools:context=".CadastroEnderecoActivity">
+
+    <TextView
+        android:id="@+id/tvEndereco"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="83dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Endereço"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="48sp" />
+
+    <EditText
+        android:id="@+id/etCep"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/tvEndereco"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="62dp"
+        android:ems="10"
+        android:hint="CEP"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etCidade"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/etCep"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="61dp"
+        android:ems="10"
+        android:hint="Cidade"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etBairro"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/etCidade"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="61dp"
+        android:ems="10"
+        android:hint="Bairro"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etRua"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/etBairro"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="61dp"
+        android:ems="10"
+        android:hint="Rua"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etNumero"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/etRua"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="61dp"
+        android:ems="10"
+        android:hint="Número"
+        android:inputType="number" />
+
+
+    <RadioGroup
+        android:id="@+id/RGroup"
+        android:layout_width="276dp"
+        android:layout_height="58dp"
+        android:layout_below="@+id/etNumero"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="59dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbCliente"
+            android:layout_width="112dp"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/purple_700"
+            android:text="Cliente" />
+
+        <RadioButton
+            android:id="@+id/rbFornecedor"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/purple_700"
+            android:text="Fornecedor" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_below="@+id/RGroup"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="118dp"
+        android:text="Continuar" />
+
+</RelativeLayout>

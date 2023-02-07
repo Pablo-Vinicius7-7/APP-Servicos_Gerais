@@ -75,18 +75,18 @@
         android:layout_marginEnd="121dp"
         android:text="Entrar" />
 
-    <TextView
-        android:id="@+id/tvCadastro"
-        android:layout_width="293dp"
-        android:layout_height="32dp"
-        android:layout_below="@+id/btnEntrar"
+    <Button
+        android:id="@+id/btnCadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnEntrar"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="73dp"
-        android:layout_marginTop="57dp"
-        android:layout_marginEnd="45dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Não é usuário? Cadastre-se"
-        android:textColor="#000000"
-        android:textSize="20sp" />
+        android:layout_marginStart="121dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginBottom="-83dp"
+        android:backgroundTint="@color/purple_200"
+        android:text="Cadastrar" />
+
+
 </RelativeLayout>
