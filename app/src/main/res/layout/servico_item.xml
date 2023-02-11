@@ -31,7 +31,7 @@
         android:maxLines="4"
         android:layout_marginTop="5dp"
         android:textSize="16sp"
-        android:text="Exemplo de serviço prestado por alguem AAAAAAAAAAAAAAAAAA OK"
+        android:text=""
         app:layout_constraintTop_toBottomOf="@+id/nomeServico"
         app:layout_constraintEnd_toEndOf="parent"
         />

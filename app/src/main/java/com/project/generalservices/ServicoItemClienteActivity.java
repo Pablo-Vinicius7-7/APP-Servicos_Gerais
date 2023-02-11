@@ -15,19 +15,5 @@ public class ServicoItemClienteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.servico_item);
-
-        Button btnSolicitar = findViewById(R.id.btnSolicitar);
-
-        btnSolicitar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                exibirConfirmacao();
-            }
-        });
-
-        }
-
-    private void exibirConfirmacao() {
-
     }
 }

@@ -13,30 +13,29 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.generalservices.R;
-import com.project.generalservices.ServicoItemClienteActivity;
 
-public class adapterServico extends RecyclerView.Adapter<adapterServico.MyViewHolder> {
+public class adapterFornecedorServico extends RecyclerView.Adapter<adapterFornecedorServico.MyViewHolder> {
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.servico_item, parent, false);
+        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.servico_aceitar_recusar, parent, false);
 
         return new MyViewHolder(itemLista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.nome.setText("Mecânico");
-        holder.descricao.setText("O mecânico irá consertar seu carro. Ele analisará o erro e após isso consertar");
-        holder.preco.setText("220.00");
-        holder.solicitar.setOnClickListener(new View.OnClickListener() {
+        holder.nomeServico.setText("Encanador");
+        holder.nomeCliente.setText("Fulano de tal");
+        holder.endereco.setText("Rua Vasco da Gama, nº 10");
+        holder.aceitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder msgBox = new AlertDialog.Builder(holder.itemView.getContext());
-                msgBox.setTitle("Solicitar");
-                msgBox.setMessage("Deseja realmente solicitar esse serviço?");
+                msgBox.setTitle("Confimar");
+                msgBox.setMessage("Deseja realmente confirmar esse serviço?");
                 msgBox.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -64,19 +63,20 @@ public class adapterServico extends RecyclerView.Adapter<adapterServico.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView nome;
-        TextView descricao;
-        TextView preco;
-        Button solicitar;
+        TextView nomeServico;
+        TextView nomeCliente;
+        TextView endereco;
+        Button aceitar;
+        Button recusar;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nome = itemView.findViewById(R.id.nomeServico);
-            descricao = itemView.findViewById(R.id.descricaoServico);
-            preco = itemView.findViewById(R.id.precoServico);
-            solicitar = itemView.findViewById(R.id.btnSolicitar);
-
+            nomeServico = itemView.findViewById(R.id.nomeServico);
+            nomeCliente = itemView.findViewById(R.id.nomeCliente);
+            endereco = itemView.findViewById(R.id.tvEndereco);
+            aceitar = itemView.findViewById(R.id.btnAceitar);
+            recusar = itemView.findViewById(R.id.btnRecusar);
         }
     }
 }

@@ -12,39 +12,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.project.generalservices.Adapter.ServicoAdapter;
+import com.project.generalservices.Adapter.ServicosSolicitadosAdapter;
 import com.project.generalservices.Adapter.adapterClienteServico;
+import com.project.generalservices.Adapter.adapterFornecedorServico;
 import com.project.generalservices.helper.DBHelper;
 
-import java.util.ArrayList;
-
-public class TelaClienteActivity extends AppCompatActivity {
+public class TelaFornecedorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_cliente);
+        setContentView(R.layout.activity_tela_fornecedor);
 
         Bundle extras = getIntent().getExtras();
         Integer usuarioId = extras.getInt("UsuarioId");
 
-        //DBHelper myDB = new DBHelper(TelaClienteActivity.this);
-        configurarRecycler();
-
+        configurarRecycler(usuarioId);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_principal_cliente,menu);
+
+        getMenuInflater().inflate(R.menu.menu_principal_fornecedor,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         switch (item.getItemId()) {
-
-            case R.id.btnEditar:
-
+            case R.id.btnEditarEndereco:
                 Bundle extras = getIntent().getExtras();
                 Integer usuarioId = extras.getInt("UsuarioId");
 
@@ -58,7 +54,7 @@ public class TelaClienteActivity extends AppCompatActivity {
                 String rua = myDB.getRua(usuarioId);
                 String numero = myDB.getNumero(usuarioId);
 
-                Intent telaEndereco = new Intent(TelaClienteActivity.this,EditarEnderecoActivity.class);
+                Intent telaEndereco = new Intent(TelaFornecedorActivity.this,EditarEnderecoActivity.class);
                 telaEndereco.putExtra("Id",id);
                 telaEndereco.putExtra("Cep",cep);
                 telaEndereco.putExtra("Cidade",cidade);
@@ -76,17 +72,16 @@ public class TelaClienteActivity extends AppCompatActivity {
         }
     }
 
-    private void configurarRecycler() {
+    private void configurarRecycler(Integer usuario_fornecedor_id) {
         // Configurando o gerenciador de layout para ser uma lista.
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewServicos);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewServicosFornecedor);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // Adiciona o adapter que irá anexar os objetos à lista.
         DBHelper myDB = new DBHelper(this);
-        ServicoAdapter adapter = new ServicoAdapter(myDB.getAllServicos());
+        ServicosSolicitadosAdapter adapter = new ServicosSolicitadosAdapter(myDB.getServicosSolicitadosById(usuario_fornecedor_id));
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
-
 }
