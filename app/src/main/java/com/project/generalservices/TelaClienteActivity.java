@@ -12,10 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.project.generalservices.Adapter.ServicoAdapter;
-import com.project.generalservices.Adapter.adapterClienteServico;
 import com.project.generalservices.helper.DBHelper;
-
-import java.util.ArrayList;
 
 public class TelaClienteActivity extends AppCompatActivity {
 
@@ -27,9 +24,9 @@ public class TelaClienteActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         Integer usuarioId = extras.getInt("UsuarioId");
 
-        //DBHelper myDB = new DBHelper(TelaClienteActivity.this);
-        configurarRecycler();
-
+        DBHelper myDB = new DBHelper(TelaClienteActivity.this);
+        String cep = myDB.getCep(usuarioId);
+        configurarRecycler(cep, usuarioId);
     }
 
     @Override
@@ -76,7 +73,7 @@ public class TelaClienteActivity extends AppCompatActivity {
         }
     }
 
-    private void configurarRecycler() {
+    private void configurarRecycler(String cep, Integer usuarioId) {
         // Configurando o gerenciador de layout para ser uma lista.
         RecyclerView recyclerView = findViewById(R.id.recyclerViewServicos);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -84,7 +81,7 @@ public class TelaClienteActivity extends AppCompatActivity {
 
         // Adiciona o adapter que irá anexar os objetos à lista.
         DBHelper myDB = new DBHelper(this);
-        ServicoAdapter adapter = new ServicoAdapter(myDB.getAllServicos());
+        ServicoAdapter adapter = new ServicoAdapter(myDB.getServicosByCep(cep), usuarioId);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }

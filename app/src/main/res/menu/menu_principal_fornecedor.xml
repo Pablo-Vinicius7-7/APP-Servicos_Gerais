@@ -3,8 +3,6 @@
 
     <item android:title="Editar endereço"
         android:id="@+id/btnEditarEndereco"/>
-    <item android:title="Lista de serviços"
-        android:id="@+id/btnListaServicos"/>
     <item android:title="Sair"
         android:id="@+id/btnSair"/>
 

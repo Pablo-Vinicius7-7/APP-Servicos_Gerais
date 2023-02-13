@@ -33,11 +33,13 @@ public class DBHelper extends SQLiteOpenHelper {
         String sqlServico = "create table servico (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, usuario_id INTEGER, nome Text, descricao Text, valor Text)";
         String sqlServicoSolicitado = "create table servico_solicitado (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,usuario_cliente_id INTEGER, usuario_fornecedor_id INTEGER, " +
                                       "nome_servico Text,nome_cliente Text, endereco Text)";
+        String sqlServicoEndereco = "create table servico_endereco (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, servico_id INTEGER, endereco_id INTEGER)";
 
         db.execSQL(sqlUsuario);
         db.execSQL(sqlEndereco);
         db.execSQL(sqlServico);
         db.execSQL(sqlServicoSolicitado);
+        db.execSQL(sqlServicoEndereco);
         Log.d("Banco de dados", "onCreate: OK");
     }
 
@@ -125,6 +127,13 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return null;
+    }
+
+    public String getNomeUsuarioById(Integer usuario_id) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor c = myDB.rawQuery("select nome from usuario where id = ?", new String[]{usuario_id + ""});
+        c.moveToFirst();
+        return c.getString(0);
     }
 
     //Funcoes endereco
@@ -236,7 +245,35 @@ public class DBHelper extends SQLiteOpenHelper {
         return servicos;
     }
 
+    public List<Servico> getServicosByCep(String cep) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        List<Servico> servicos = new ArrayList<>();
+        Cursor cursor = myDB.rawQuery("SELECT * FROM servico INNER JOIN servico_endereco ON servico_endereco.servico_id = servico.id INNER JOIN endereco ON endereco.id = servico_endereco.endereco_id WHERE endereco.cep = ? " ,new String[]{cep + ""});
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            int usuario_id = cursor.getInt(1);
+            String nome = cursor.getString(2);
+            String descricao = cursor.getString(3);
+            String valor = cursor.getString(4);
+            servicos.add(new Servico(id,nome,descricao,valor));
+        }
+        cursor.close();
+        return servicos;
+    }
 
+    public Integer getServicoIdByUsuarioId(Integer usuario_id) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor c = myDB.rawQuery("select id from servico where usuario_id = ?", new String[]{usuario_id + ""});
+        c.moveToFirst();
+        return c.getInt(0);
+    }
+
+    public Integer getServicoIdByNomeServico(String nomeServico) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor c = myDB.rawQuery("select id from servico where nome = ?", new String[]{nomeServico + ""});
+        c.moveToFirst();
+        return c.getInt(0);
+    }
     //Funcoes servicos solicitados
 
     public List<ServicoSolicitado> getAllServicosSolicitados() {
@@ -270,5 +307,45 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return servicoSolicitados;
+    }
+
+    public boolean cadastrarServicoSolicitado (Integer usuario_cliente_id, Integer usuario_fornecedor_id, String nome_cliente, String nome_servico, String endereco){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put("usuario_cliente_id",usuario_cliente_id);
+        cv.put("usuario_fornecedor_id",usuario_fornecedor_id);
+        cv.put("nome_cliente", nome_cliente);
+        cv.put("nome_servico", nome_servico);
+        cv.put("endereco", endereco);
+
+        long result = myDB.insert("servico_solicitado", null, cv);
+
+        if (result == -1) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean removerServicoSolicitado (long id) {
+
+        SQLiteDatabase myDB = this.getWritableDatabase();
+
+        return myDB.delete("servico_solicitado", "id=?", new String[]{ id + "" }) > 0;    }
+
+    //Funcoes servico endereco
+    public boolean cadastrarServicoEndereco (Integer servico_id, Integer endereco_id){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put("servico_id",servico_id);
+        cv.put("endereco_id",endereco_id);
+
+        long result = myDB.insert("servico_endereco", null, cv);
+
+        if (result == -1) {
+            return false;
+        }
+        return true;
     }
 }

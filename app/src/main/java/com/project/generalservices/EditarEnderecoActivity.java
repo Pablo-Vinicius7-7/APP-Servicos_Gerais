@@ -46,11 +46,17 @@ public class EditarEnderecoActivity extends AppCompatActivity {
         btnEditarEndereco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean updateEndereco = myDB.editarEndereco(id,etCep.getText().toString(),etCidade.getText().toString(),
-                        etBairro.getText().toString(),etRua.getText().toString(),etNumero.getText().toString());
 
-                if(updateEndereco) {
-                    Toast.makeText(EditarEnderecoActivity.this, "Endereço atualizado com sucesso", Toast.LENGTH_LONG).show();
+                if(etCep.getText().toString().isEmpty() || etCidade.getText().toString().isEmpty() || etBairro.getText().toString().isEmpty() || etRua.getText().toString().isEmpty() || etNumero.getText().toString().isEmpty()) {
+                    Toast.makeText(EditarEnderecoActivity.this, "É necessário preencher todos os campos!", Toast.LENGTH_LONG).show();
+
+                } else {
+                    boolean updateEndereco = myDB.editarEndereco(id,etCep.getText().toString(),etCidade.getText().toString(),
+                            etBairro.getText().toString(),etRua.getText().toString(),etNumero.getText().toString());
+
+                    if(updateEndereco) {
+                        Toast.makeText(EditarEnderecoActivity.this, "Endereço atualizado com sucesso", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

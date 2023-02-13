@@ -1,15 +1,17 @@
 package com.project.generalservices.dao;
 
+import com.project.generalservices.helper.DBHelper;
+
 public class ServicoSolicitado {
 
-    private long id;
+    private int id;
     private long usuario_cliente_id;
     private  long usuario_fornecedor_id;
     private String nome_servico;
     private String nome_cliente;
     private String endereco;
 
-    public ServicoSolicitado(long id, long usuario_cliente_id, long usuario_fornecedor_id, String nome_servico, String nome_cliente, String endereco) {
+    public ServicoSolicitado(int id, long usuario_cliente_id, long usuario_fornecedor_id, String nome_servico, String nome_cliente, String endereco) {
         this.id = id;
         this.usuario_cliente_id = usuario_cliente_id;
         this.usuario_fornecedor_id = usuario_fornecedor_id;
@@ -22,7 +24,7 @@ public class ServicoSolicitado {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -65,4 +67,5 @@ public class ServicoSolicitado {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
 }

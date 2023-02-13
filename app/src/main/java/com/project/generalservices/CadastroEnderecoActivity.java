@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.project.generalservices.dao.Usuario;
 import com.project.generalservices.helper.DBHelper;
@@ -62,32 +63,38 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
                 btnContinuar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (resposta.equals("Fornecedor")) {
-                            Intent intentCadastroServico = new Intent( CadastroEnderecoActivity.this, CadastroServicoActivity.class);
-                            intentCadastroServico.putExtra("Cep", etCep.getText().toString());
-                            intentCadastroServico.putExtra("Bairro", etBairro.getText().toString());
-                            intentCadastroServico.putExtra("Cidade",etCidade.getText().toString());
-                            intentCadastroServico.putExtra("Rua", etRua.getText().toString());
-                            intentCadastroServico.putExtra("Numero", etNumero.getText().toString());
-                            intentCadastroServico.putExtra("Nome",nome);
-                            intentCadastroServico.putExtra("Email",email);
-                            intentCadastroServico.putExtra("Senha",senha);
-                            startActivity(intentCadastroServico);
 
-                        } else if (resposta.equals("Cliente")) {
+                        if(etCep.getText().toString().isEmpty() || etCidade.getText().toString().isEmpty() || etBairro.getText().toString().isEmpty() || etRua.getText().toString().isEmpty() || etNumero.getText().toString().isEmpty()) {
+                            Toast.makeText(CadastroEnderecoActivity.this, "É necessário preencher todos os campos!", Toast.LENGTH_LONG).show();
 
-                            boolean usuario = mydb.cadastrarUsuario(nome,email,senha,1);
+                        } else {
+                            if (resposta.equals("Fornecedor")) {
+                                Intent intentCadastroServico = new Intent( CadastroEnderecoActivity.this, CadastroServicoActivity.class);
+                                intentCadastroServico.putExtra("Cep", etCep.getText().toString());
+                                intentCadastroServico.putExtra("Bairro", etBairro.getText().toString());
+                                intentCadastroServico.putExtra("Cidade",etCidade.getText().toString());
+                                intentCadastroServico.putExtra("Rua", etRua.getText().toString());
+                                intentCadastroServico.putExtra("Numero", etNumero.getText().toString());
+                                intentCadastroServico.putExtra("Nome",nome);
+                                intentCadastroServico.putExtra("Email",email);
+                                intentCadastroServico.putExtra("Senha",senha);
+                                startActivity(intentCadastroServico);
 
-                            if (usuario != false) {
-                                Integer usuarioId = mydb.getUsuarioIdByEmail(email);
-                                boolean insertEndereco = mydb.cadastrarEndereco (usuarioId,cep,cidade,bairro,rua,numero);
+                            } else if (resposta.equals("Cliente")) {
+
+                                boolean usuario = mydb.cadastrarUsuario(nome,email,senha,1);
+
+                                if (usuario != false) {
+                                    Integer usuarioId = mydb.getUsuarioIdByEmail(email);
+                                    boolean insertEndereco = mydb.cadastrarEndereco (usuarioId,cep,cidade,bairro,rua,numero);
                                     if (insertEndereco) {
                                         Intent intentTelaCliente = new Intent(CadastroEnderecoActivity.this, TelaClienteActivity.class);
                                         intentTelaCliente.putExtra("UsuarioId",usuarioId);
                                         startActivity(intentTelaCliente);
                                     }
-                            }
+                                }
 
+                            }
                         }
                     }
                 });

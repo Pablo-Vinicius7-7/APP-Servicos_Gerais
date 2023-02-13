@@ -11,10 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.project.generalservices.Adapter.ServicoAdapter;
 import com.project.generalservices.Adapter.ServicosSolicitadosAdapter;
-import com.project.generalservices.Adapter.adapterClienteServico;
-import com.project.generalservices.Adapter.adapterFornecedorServico;
 import com.project.generalservices.helper.DBHelper;
 
 public class TelaFornecedorActivity extends AppCompatActivity {

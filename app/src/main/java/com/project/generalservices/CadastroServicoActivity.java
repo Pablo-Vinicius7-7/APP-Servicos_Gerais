@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.project.generalservices.helper.DBHelper;
 
@@ -48,18 +49,26 @@ public class CadastroServicoActivity extends AppCompatActivity {
 
                 boolean usuario = mydb.cadastrarUsuario(nome, email, senha, 0);
 
-                if (usuario != false) {
-                    Integer usuarioId = mydb.getUsuarioIdByEmail(email);
-                    boolean insertEndereco = mydb.cadastrarEndereco(usuarioId, cep, cidade, bairro, rua, numero);
-                    if (insertEndereco) {
-                        boolean insertServico = mydb.cadastrarServico(usuarioId, etNomeServico.getText().toString(), etDescricao.getText().toString(), etValor.getText().toString());
+                if(etNomeServico.getText().toString().isEmpty() || etDescricao.getText().toString().isEmpty() || etValor.getText().toString().isEmpty()) {
+                    Toast.makeText(CadastroServicoActivity.this, "É necessário preencher todos os campos!", Toast.LENGTH_LONG).show();
+
+                } else {
+                    if (usuario != false) {
+                        Integer usuarioId = mydb.getUsuarioIdByEmail(email);
+                        boolean insertEndereco = mydb.cadastrarEndereco(usuarioId, cep, cidade, bairro, rua, numero);
+                        if (insertEndereco) {
+                            boolean insertServico = mydb.cadastrarServico(usuarioId, etNomeServico.getText().toString(), etDescricao.getText().toString(), etValor.getText().toString());
                             if (insertServico) {
+                                Integer servicoId = mydb.getServicoIdByUsuarioId(usuarioId);
+                                Integer enderecoId = mydb.getEnderecoIdByUsuarioId(usuarioId);
+                                boolean insertServicoEnderecp = mydb.cadastrarServicoEndereco(servicoId,enderecoId);
                                 Intent telaFornecedor = new Intent(CadastroServicoActivity.this, TelaFornecedorActivity.class);
                                 telaFornecedor.putExtra("UsuarioId", usuarioId);
                                 startActivity(telaFornecedor);
                             }
                         }
                     }
+                }
                 };
             });
         }
