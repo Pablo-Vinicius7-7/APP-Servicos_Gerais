@@ -65,8 +65,7 @@ public class TelaClienteActivity extends AppCompatActivity {
                 startActivity(telaEndereco);
                 return true;
             case R.id.btnSair:
-                finish();
-                System.exit(0);
+                finishAffinity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
